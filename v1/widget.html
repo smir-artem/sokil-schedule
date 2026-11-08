@@ -1,0 +1,284 @@
+<!doctype html>
+<html lang="uk">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Розклад академії СФК «Сокіл»</title>
+  <style>
+    html { box-sizing:border-box;background:#fff; }
+    body { margin:0;padding:0;background:#fff;color:#151515;font-family:Arial,Helvetica,sans-serif; }
+    *, *::before, *::after { box-sizing:inherit; }
+    button,select { font-family:inherit; }
+  </style>
+</head>
+<body>
+<div id="sokil-academy-schedule" class="ss-wrap" aria-label="Розклад занять дитячої футбольної академії СФК Сокіл">
+  <div class="ss-tabs" role="group" aria-label="Вигляд розкладу">
+    <button type="button" class="ss-tab ss-active" data-mode="weekly" aria-pressed="true"><span class="ss-icon" aria-hidden="true">▦</span><span><strong>Звичний розклад</strong><small>Регулярні дні та час занять</small></span></button>
+    <button type="button" class="ss-tab" data-mode="sessions" aria-pressed="false"><span class="ss-icon" aria-hidden="true">▤</span><span><strong>Найближчі 14 днів</strong><small>Заплановані тренування</small></span></button>
+  </div>
+  <div class="ss-controls">
+    <label class="ss-group-label" for="ss-group-select">Оберіть групу:<select id="ss-group-select" class="ss-select" disabled><option>Завантаження груп...</option></select></label>
+    <div class="ss-explainer"><span class="ss-info-mark" aria-hidden="true">i</span><span><strong>Що показує ця сторінка?</strong><small>Звичний графік і заняття за календарями «Сокіл Цифровий». Дані оновлюються автоматично.</small></span></div>
+  </div>
+  <div class="ss-loading" id="ss-loading" role="status">Завантажуємо розклад академії...</div>
+  <div class="ss-content" id="ss-content" hidden>
+    <div class="ss-grid">
+      <section class="ss-card ss-main" id="ss-main" aria-live="polite"></section>
+      <aside class="ss-card ss-about" id="ss-about"></aside>
+    </div>
+    <div class="ss-alert" id="ss-alert" role="status"></div>
+    <div class="ss-bottom"><span class="ss-update" id="ss-update"></span><span class="ss-freshness" id="ss-freshness"></span></div>
+  </div>
+</div>
+<style>
+  #sokil-academy-schedule { --ss-yellow:#FFEC02; --ss-black:#151515; --ss-text:#343434; --ss-border:#e5e5e5; color:var(--ss-black); font-family:inherit; width:100%; max-width:100%; margin:26px auto 35px; font-size:16px; line-height:1.5; }
+  #sokil-academy-schedule, #sokil-academy-schedule * {box-sizing:border-box}
+  #sokil-academy-schedule .ss-tabs {display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:22px}
+  #sokil-academy-schedule .ss-tab {min-height:79px;height:auto;text-transform:none;appearance:none;cursor:pointer;text-align:left;display:flex;align-items:center;justify-content:center;gap:16px;border:1px solid #e8e8e8;background:#f2f2f2;color:#111;border-radius:12px;padding:17px 14px;min-width:0;font:inherit;line-height:1.25;box-shadow:none;transition:background .15s}
+  #sokil-academy-schedule .ss-tab.ss-active {background:var(--ss-yellow);border-color:var(--ss-yellow)}
+  #sokil-academy-schedule .ss-tab strong {white-space:normal;display:block;font-size:19px;font-weight:800;color:#111;line-height:1.35}
+  #sokil-academy-schedule .ss-tab small {white-space:normal;display:block;font-size:13px;color:#383838;margin-top:3px;line-height:1.4}
+  #sokil-academy-schedule .ss-icon {font-size:27px;font-weight:800;line-height:1;color:#111}
+  #sokil-academy-schedule .ss-tab:hover {border-color:#c9b900}
+  #sokil-academy-schedule .ss-tab:focus-visible, #sokil-academy-schedule .ss-select:focus-visible {outline:3px solid #a38900;outline-offset:3px}
+  #sokil-academy-schedule .ss-controls {display:grid;grid-template-columns:minmax(220px, 360px) minmax(0,1fr);gap:22px;align-items:center;margin-bottom:22px}
+  #sokil-academy-schedule .ss-group-label {color:#171717;font-size:16px;display:block;font-weight:650;margin:0}
+  #sokil-academy-schedule .ss-select {display:block;width:100%;margin-top:8px;background:#fff;color:#111;border:1px solid #cfcfcf;border-radius:10px;min-height:49px;padding:10px 38px 10px 15px;font-size:17px;font-weight:750;font-family:inherit;cursor:pointer;box-shadow:0 2px 7px rgba(0,0,0,.045)}
+  #sokil-academy-schedule .ss-explainer {display:flex;align-items:flex-start;gap:13px;padding-left:22px;border-left:1px solid #ddd}
+  #sokil-academy-schedule .ss-info-mark {flex:0 0 27px;width:27px;height:27px;border:2px solid #1b1b1b;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:17px;font-weight:800;line-height:1}
+  #sokil-academy-schedule .ss-explainer strong {display:block;font-size:16px;line-height:1.25}
+  #sokil-academy-schedule .ss-explainer small {display:block;color:#555;font-size:14px;line-height:1.5;margin-top:4px}
+  #sokil-academy-schedule .ss-grid {display:grid;grid-template-columns:minmax(0,1.45fr) minmax(0,1fr);gap:20px;align-items:start}
+  #sokil-academy-schedule .ss-card {min-width:0;padding:25px;border:1px solid var(--ss-border);border-radius:14px;background:#fff;box-shadow:0 3px 12px rgba(0,0,0,.035)}
+  #sokil-academy-schedule .ss-main h3, #sokil-academy-schedule .ss-about h3 {margin:0 0 5px;font-weight:850;font-size:22px;line-height:1.3;letter-spacing:-.3px;color:#111}
+  #sokil-academy-schedule .ss-main h3:before, #sokil-academy-schedule .ss-about h3:before {display:none}
+  #sokil-academy-schedule .ss-description {color:#626262;margin:0 0 16px;font-size:14px;line-height:1.55}
+  #sokil-academy-schedule .ss-line {display:grid;grid-template-columns:minmax(90px, .9fr) minmax(100px, 1.2fr) minmax(95px,.8fr);gap:12px;align-items:center;padding:13px 0;border-top:1px solid #e9e9e9;font-size:15px;min-width:0}
+  #sokil-academy-schedule .ss-day {display:inline-block;justify-self:start;background:#fff8bb;border-radius:7px;padding:6px 10px;color:#111;font-weight:800;line-height:1.2}
+  #sokil-academy-schedule .ss-time {font-variant-numeric:tabular-nums;font-weight:750;line-height:1.4}
+  #sokil-academy-schedule .ss-place {color:#434343;font-size:14px;line-height:1.35}
+  #sokil-academy-schedule .ss-line-note {grid-column:1/-1;font-size:13px;color:#595959;line-height:1.45;margin-top:-3px}
+  #sokil-academy-schedule .ss-status-pill {display:inline-block;padding:3px 8px;border-radius:6px;font-size:12px;font-weight:800;margin-left:7px;background:#fff0af;color:#111;white-space:nowrap}
+  #sokil-academy-schedule .ss-status-pill.ss-cancel {background:#fee2e2;color:#8e1d1d}
+  #sokil-academy-schedule .ss-about {background:#fffdf0}
+  #sokil-academy-schedule .ss-detail {display:grid;grid-template-columns: minmax(0,1fr);gap:2px;padding:11px 0;border-bottom:1px solid #eee8bb}
+  #sokil-academy-schedule .ss-detail:last-child {border-bottom:0}
+  #sokil-academy-schedule .ss-detail span {font-size:13px;color:#585858}
+  #sokil-academy-schedule .ss-detail strong {font-size:16px;color:#111;font-weight:750;overflow-wrap:anywhere}
+  #sokil-academy-schedule .ss-notice {padding:13px 15px;margin:15px 0 0;background:#f7f7f7;border-left:4px solid var(--ss-yellow);border-radius:0 8px 8px 0;font-size:14px;color:#404040;line-height:1.55}
+  #sokil-academy-schedule .ss-alert {margin-top:18px;padding:14px 18px;background:#f5f5f5;border-radius:10px;color:#333;font-size:14px}
+  #sokil-academy-schedule .ss-alert p {margin:0 0 8px}
+  #sokil-academy-schedule .ss-alert p:last-child {margin-bottom:0}
+  #sokil-academy-schedule .ss-bottom {display:flex;align-items:center;justify-content:space-between;gap:15px;flex-wrap:wrap;margin-top:19px;font-size:14px;color:#555}
+  #sokil-academy-schedule .ss-freshness {padding:6px 11px;background:#fff2ae;color:#1b1b1b;border-radius:7px;font-weight:750}
+  #sokil-academy-schedule .ss-freshness.ss-warning {background:#ffedd5}
+  #sokil-academy-schedule .ss-freshness.ss-expired {background:#ececec}
+  #sokil-academy-schedule .ss-loading {padding:26px;border:1px solid #e5e5e5;background:#fafafa;border-radius:10px;color:#464646}
+  #sokil-academy-schedule .ss-loading.ss-error {border-left:5px solid var(--ss-yellow)}
+  #sokil-academy-schedule [hidden] {display:none!important}
+  @media(max-width:850px) {
+    #sokil-academy-schedule .ss-grid {grid-template-columns:1fr}
+    #sokil-academy-schedule .ss-controls {grid-template-columns:1fr;gap:15px}
+    #sokil-academy-schedule .ss-explainer {padding-left:0;border-left:0}
+  }
+  @media(max-width:600px) {
+    #sokil-academy-schedule {font-size:15px;margin:20px auto 25px}
+    #sokil-academy-schedule .ss-tabs {grid-template-columns:1fr;gap:9px;margin-bottom:20px}
+    #sokil-academy-schedule .ss-tab {justify-content:flex-start;gap:13px;padding:13px 17px}
+    #sokil-academy-schedule .ss-tab strong {font-size:17px}
+    #sokil-academy-schedule .ss-tab small {font-size:12px}
+    #sokil-academy-schedule .ss-card {padding:17px 15px}
+    #sokil-academy-schedule .ss-main h3, #sokil-academy-schedule .ss-about h3 {font-size:20px}
+    #sokil-academy-schedule .ss-line {grid-template-columns:minmax(60px,.85fr) minmax(100px,1.2fr) minmax(65px,.75fr);gap:8px;padding:12px 0;font-size:13px}
+    #sokil-academy-schedule .ss-day {padding:6px 7px;font-size:13px}
+    #sokil-academy-schedule .ss-time {font-size:13px}
+    #sokil-academy-schedule .ss-place {font-size:12px}
+    #sokil-academy-schedule .ss-status-pill {margin:3px 0 0;font-size:11px}
+    #sokil-academy-schedule .ss-bottom {align-items:flex-start}
+  }
+</style>
+<script>
+(function () {
+  'use strict';
+  var ROOT = document.getElementById('sokil-academy-schedule');
+  if (!ROOT || ROOT.getAttribute('data-ss-started') === '1') return;
+  ROOT.setAttribute('data-ss-started', '1');
+  var URL = 'https://smir-artem.github.io/sokil-schedule/v1/schedule.json';
+  var CACHE_KEY = 'sokil-academy-schedule-v1';
+  var CACHE_MS = 10 * 60 * 1000;
+  var DAYS = ['', 'Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Нд'];
+  var select = ROOT.querySelector('#ss-group-select');
+  var loading = ROOT.querySelector('#ss-loading');
+  var content = ROOT.querySelector('#ss-content');
+  var main = ROOT.querySelector('#ss-main');
+  var about = ROOT.querySelector('#ss-about');
+  var alertEl = ROOT.querySelector('#ss-alert');
+  var data = null, group = null, mode = 'weekly', usedFallback = false;
+
+  function node(tag, cls, value) {
+    var x = document.createElement(tag);
+    if (cls) x.className = cls;
+    if (value !== undefined && value !== null) x.textContent = String(value);
+    return x;
+  }
+  function add(parent, tag, cls, value) { var n = node(tag, cls, value); parent.appendChild(n); return n; }
+  function clear(el) { while(el.firstChild) el.removeChild(el.firstChild); }
+  function stamp(s) { var n = Date.parse(s || ''); return Number.isFinite(n) ? n : null; }
+  function formatClock(s) {
+    if (!s) return null;
+    if (/^\d{2}:\d{2}$/.test(s)) return s;
+    var n = stamp(s); if (n === null) return null;
+    return new Intl.DateTimeFormat('uk-UA', {timeZone:'Europe/Kyiv',hour:'2-digit',minute:'2-digit',hour12:false}).format(new Date(n));
+  }
+  function hours(start,end) {
+    var a = formatClock(start), b = formatClock(end);
+    return a && b ? a + ' – ' + b : a || 'Час уточнюється';
+  }
+  function dateObject(s) {
+    if (!/^\d{4}-\d{2}-\d{2}$/.test(s || '')) return null;
+    return new Date(s + 'T12:00:00Z');
+  }
+  function prettyDate(s) {
+    var d = dateObject(s); if (!d || !Number.isFinite(d.getTime())) return s || '';
+    return new Intl.DateTimeFormat('uk-UA', {day:'numeric',month:'long',timeZone:'Europe/Kyiv'}).format(d);
+  }
+  function prettyDay(s) {
+    var d = dateObject(s); if (!d || !Number.isFinite(d.getTime())) return s || '';
+    var weekday = new Intl.DateTimeFormat('uk-UA', {weekday:'short',timeZone:'Europe/Kyiv'}).format(d);
+    return weekday + ', ' + prettyDate(s);
+  }
+  function prettyUpdated(s) {
+    var n = stamp(s); if (n === null) return 'Час оновлення невідомий';
+    return new Intl.DateTimeFormat('uk-UA', {day:'numeric',month:'long',year:'numeric',hour:'2-digit',minute:'2-digit',hour12:false,timeZone:'Europe/Kyiv'}).format(new Date(n));
+  }
+  function freshState(d) {
+    var st = stamp(d.stale_after), ex = stamp(d.expires_at), now = Date.now();
+    if (st === null || ex === null) return 'expired';
+    return now >= ex ? 'expired' : now >= st ? 'warning' : 'fresh';
+  }
+  function place(v) {return v === 'manege' ? 'Манеж' : v === 'field' ? 'Поле' : 'Уточнюється';}
+  function count(n) {
+    if (!Number.isInteger(Number(n)) || Number(n) <= 0) return 'Кількість занять уточнюється';
+    n = Number(n); var last = n % 10, ten = n % 100;
+    return n + ' ' + ((last === 1 && ten !== 11) ? 'заняття' : (last>=2 && last<=4 && (ten<12 || ten>14)) ? 'заняття' : 'занять') + ' на тиждень';
+  }
+  function heading(parent, title, desc) {
+    add(parent,'h3','',title);
+    if (desc) add(parent,'p','ss-description',desc);
+  }
+  function notice(parent,text) {add(parent,'div','ss-notice',text);}
+  function row(parent, day, time, loc, status, comment) {
+    var line = add(parent,'div','ss-line');
+    add(line,'span','ss-day',day);
+    var timeEl = add(line,'div','ss-time',time);
+    if (status) add(timeEl,'span','ss-status-pill' + (status === 'cancelled' ? ' ss-cancel' : ''),status === 'cancelled' ? 'Скасовано' : 'Перенесено');
+    add(line,'span','ss-place',loc);
+    if (comment) add(line,'small','ss-line-note',comment);
+  }
+  function weekly() {
+    heading(main,'Звичний тижневий розклад','Група '+group.name+' · '+count(group.guaranteed_per_week));
+    var arr = Array.isArray(group.weekly) ? group.weekly.slice() : [];
+    arr.sort(function (a,b) {return Number(a.weekday || 8) - Number(b.weekday || 8);});
+    if (!arr.length) {notice(main,'Звичний графік уточнюється. Перегляньте найближчі заняття або зверніться до тренера.');return;}
+    arr.forEach(function (s) {
+      if (!s) return;
+      var weekend = s.weekend_choice === true;
+      var label = weekend ? 'Сб або Нд' : DAYS[Number(s.weekday)] || 'День';
+      var known = s.time_known !== false && !!s.start;
+      var time = known ? hours(s.start,s.end) : 'Час уточнюється';
+      if (weekend && known) time = 'Орієнтовно ' + time;
+      row(main,label,time,place(s.location),'',weekend ? 'Одне заняття у вихідний день. Конкретний день уточнюйте в тренера.' : '');
+    });
+    notice(main,'Це звичний графік. Час і місце окремих тренувань можуть змінюватися. Точні заняття дивіться у вкладці «Найближчі 14 днів».');
+    if (group.sessions_coverage === 'partial') notice(main,'У цій групі заняття можуть з’являтися в календарі за 1–2 дні. Точні дати уточнюйте в тренера.');
+  }
+  function sessions(fresh) {
+    heading(main,'Найближчі 14 днів','Група '+group.name+' · '+prettyDate(data.sessions_from)+' – '+prettyDate(data.sessions_to));
+    if (fresh === 'expired') {notice(main,'Конкретні тренування приховані, оскільки дані застаріли. Актуальні заняття уточнюйте в тренера або в клубі.');return;}
+    var arr = (Array.isArray(data.sessions) ? data.sessions : []).filter(function(s) {return s && s.group_id === group.id && s.date >= data.sessions_from && s.date <= data.sessions_to;});
+    arr.sort(function(a,b) {return (String(a.date) + String(a.start || '')).localeCompare(String(b.date) + String(b.start || ''));});
+    if (!arr.length) {
+      notice(main,group.sessions_coverage === 'partial'
+        ? 'Підтверджених занять у календарі поки немає. Тренування можуть додаватися за 1–2 дні до проведення. Точні дати уточнюйте в тренера.'
+        : 'У календарі поки немає запланованих занять на цей період. Уточніть графік у тренера.');
+      return;
+    }
+    arr.forEach(function(s) {
+      var state = s.status === 'cancelled' ? 'cancelled' : s.status === 'rescheduled' || s.moved_from_date ? 'rescheduled' : '';
+      var time = s.start ? hours(s.start,s.end) : '–';
+      var note = s.status === 'rescheduled' && s.moved_to_date ? 'Перенесено на '+prettyDate(s.moved_to_date) : '';
+      if (s.moved_from_date) note = 'Перенесено з '+prettyDate(s.moved_from_date);
+      row(main,prettyDay(s.date),time,s.location_label || place(s.location),state,note);
+    });
+    if (group.sessions_coverage === 'partial') notice(main,'Деякі тренування цієї групи додаються за 1–2 дні. Порожній день не означає скасування заняття. Точні дати уточнюйте в тренера.');
+  }
+  function detail(label,value) {var el = add(about,'div','ss-detail');add(el,'span','',label);add(el,'strong','',value);}
+  function renderAbout() {
+    clear(about); heading(about,'Про групу');
+    var b = group.birth_years || {};
+    var years = b.and_younger ? (b.from ? b.from+' р. н. і молодші' : group.name) : b.from && b.to ? (b.from === b.to ? String(b.from) : b.from+' – '+b.to) : group.name;
+    detail('Роки народження',years);
+    detail('Кількість занять',count(group.guaranteed_per_week));
+    var locs = [];
+    (Array.isArray(group.weekly) ? group.weekly : []).forEach(function(s) {if (s && (s.location === 'manege' || s.location === 'field')) {var p=place(s.location);if (locs.indexOf(p)===-1) locs.push(p);}});
+    detail('Місце у звичному розкладі',locs.length ? locs.join(', ') : 'За календарем конкретних занять');
+    if (group.vacation && group.vacation.from && group.vacation.to) detail('Канікули',prettyDate(group.vacation.from)+' – '+prettyDate(group.vacation.to));
+  }
+  function redraw() {
+    if (!group || !data) return;
+    var f = freshState(data);
+    clear(main);clear(alertEl);
+    if (mode === 'weekly') weekly(); else sessions(f);
+    renderAbout();
+    var messages = [];
+    if (f === 'warning') messages.push('Дані оновлено '+prettyUpdated(data.generated_at)+', можливі зміни, уточнюйте в тренера.');
+    else if (f === 'expired') messages.push('Актуальні тренування уточнюйте в тренера або в клубі.');
+    else messages.push('Розклад може змінюватися. Перевіряйте найближчі заняття й уточнюйте оперативні зміни в тренера.');
+    if (usedFallback) messages.push('Нові дані тимчасово недоступні. Показано останню збережену копію.');
+    if (group.vacation && group.vacation.from && group.vacation.to) messages.push('Канікули групи: '+prettyDate(group.vacation.from)+' – '+prettyDate(group.vacation.to)+'.');
+    messages.forEach(function(t) {add(alertEl,'p','',t);});
+    ROOT.querySelector('#ss-update').textContent = 'Оновлено: '+prettyUpdated(data.generated_at);
+    var badge = ROOT.querySelector('#ss-freshness');
+    badge.textContent = f === 'fresh' ? 'Актуально' : f === 'warning' ? 'Можливі зміни' : 'Дані застаріли';
+    badge.className = 'ss-freshness ss-'+f;
+    ROOT.querySelectorAll('.ss-tab').forEach(function(t){var active=t.getAttribute('data-mode')===mode;t.classList.toggle('ss-active',active);t.setAttribute('aria-pressed',String(active));});
+  }
+  function valid(d) {return d && typeof d.schema_version === 'string' && /^1(?:\.|$)/.test(d.schema_version) && Array.isArray(d.groups) && d.groups.length > 0 && Array.isArray(d.sessions) && !!d.generated_at && !!d.stale_after && !!d.expires_at;}
+  function fromStorage() {
+    try {var raw = window.localStorage.getItem(CACHE_KEY);if (!raw) return null;var p=JSON.parse(raw);return p && valid(p.data) && Number.isFinite(p.cachedAt) ? p : null;} catch(e) {return null;}
+  }
+  function save(d) {try {window.localStorage.setItem(CACHE_KEY,JSON.stringify({data:d,cachedAt:Date.now()}));} catch(e) {}}
+  function ready(d) {
+    data=d;
+    var groups=d.groups.filter(function(g){return g && typeof g.id==='string' && typeof g.name==='string';});
+    if (!groups.length) {loading.textContent='Дані груп поки недоступні.';return;}
+    clear(select);
+    groups.forEach(function(g){var opt=add(select,'option','',g.name);opt.value=g.id;});
+    select.disabled=false;
+    group=groups[0];
+    loading.hidden=true;content.hidden=false;
+    redraw();
+    select.addEventListener('change',function(){group=groups.filter(function(g){return g.id===select.value;})[0] || groups[0];redraw();});
+    ROOT.querySelectorAll('.ss-tab').forEach(function(t){t.addEventListener('click',function(){mode=t.getAttribute('data-mode');redraw();});});
+  }
+  function showError(detailText) {
+    loading.className='ss-loading ss-error';
+    loading.textContent='Зараз не вдалося завантажити розклад. Спробуйте оновити сторінку пізніше або уточніть графік у тренера.';
+    if (detailText) add(loading,'small','',detailText);
+  }
+  var cached=fromStorage();
+  if (cached && Date.now()-cached.cachedAt < CACHE_MS && freshState(cached.data) !== 'expired') {ready(cached.data);return;}
+  fetch(URL,{cache:'no-store'}).then(function(response){if(!response.ok) throw new Error('HTTP '+response.status);return response.json();}).then(function(d){
+    if (!valid(d)) {if (d && d.schema_version && !/^1(?:\.|$)/.test(String(d.schema_version))) throw new Error('unsupported');throw new Error('invalid');}
+    save(d);ready(d);
+  }).catch(function(err){
+    if (err && err.message==='unsupported') {showError('Формат розкладу змінився.');return;}
+    if (cached && valid(cached.data)) {usedFallback=true;ready(cached.data);}
+    else showError('Перевірте доступність опублікованого розкладу.');
+  });
+})();
+</script>
+
+</body>
+</html>
