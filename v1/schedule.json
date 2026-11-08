@@ -1,9 +1,9 @@
 {
   "schema_version": "1.0",
   "timezone": "Europe/Kyiv",
-  "generated_at": "2026-11-08T17:21:00+02:00",
-  "stale_after": "2026-11-08T23:21:00+02:00",
-  "expires_at": "2026-11-10T05:21:00+02:00",
+  "generated_at": "2026-11-08T17:38:00+02:00",
+  "stale_after": "2026-11-08T23:38:00+02:00",
+  "expires_at": "2026-11-10T05:38:00+02:00",
   "sessions_from": "2026-11-08",
   "sessions_to": "2026-11-21",
   "groups": [
@@ -289,15 +289,8 @@
           "end": "11:00",
           "time_known": true,
           "location": "manege",
-          "shared_with": []
-        },
-        {
-          "weekday": 7,
-          "start": null,
-          "end": null,
-          "time_known": false,
-          "location": null,
-          "shared_with": []
+          "shared_with": [],
+          "weekend_choice": true
         }
       ],
       "vacation": null
@@ -338,15 +331,8 @@
           "end": "12:30",
           "time_known": true,
           "location": "manege",
-          "shared_with": []
-        },
-        {
-          "weekday": 7,
-          "start": null,
-          "end": null,
-          "time_known": false,
-          "location": null,
-          "shared_with": []
+          "shared_with": [],
+          "weekend_choice": true
         }
       ],
       "vacation": null
