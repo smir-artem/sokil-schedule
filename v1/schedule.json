@@ -1,11 +1,11 @@
 {
   "schema_version": "1.0",
   "timezone": "Europe/Kyiv",
-  "generated_at": "2026-11-08T23:56:00+02:00",
-  "stale_after": "2026-11-09T05:56:00+02:00",
-  "expires_at": "2026-11-10T11:56:00+02:00",
-  "sessions_from": "2026-11-08",
-  "sessions_to": "2026-11-21",
+  "generated_at": "2026-11-09T00:27:00+02:00",
+  "stale_after": "2026-11-09T06:27:00+02:00",
+  "expires_at": "2026-11-10T12:27:00+02:00",
+  "sessions_from": "2026-11-09",
+  "sessions_to": "2026-11-22",
   "groups": [
     {
       "id": "2011-2012",
