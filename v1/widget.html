@@ -32,7 +32,7 @@
   </div>
 </div>
 <style>
-  #sokil-academy-schedule { --ss-yellow:#FFEC02; --ss-black:#151515; --ss-text:#343434; --ss-border:#e5e5e5; color:var(--ss-black); font-family:inherit; width:100%; max-width:100%; margin:26px auto 35px; font-size:16px; line-height:1.5; }
+  #sokil-academy-schedule { --ss-yellow:#FFEC02; --ss-black:#151515; --ss-text:#343434; --ss-border:#e5e5e5; color:var(--ss-black); font-family:inherit; width:100%; max-width:100%; margin:26px auto 8px; font-size:16px; line-height:1.5; }
   #sokil-academy-schedule, #sokil-academy-schedule * {box-sizing:border-box}
   #sokil-academy-schedule .ss-tabs {display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:22px}
   #sokil-academy-schedule .ss-tab {min-height:79px;height:auto;text-transform:none;appearance:none;cursor:pointer;text-align:left;display:flex;align-items:center;justify-content:center;gap:16px;border:1px solid #e8e8e8;background:#f2f2f2;color:#111;border-radius:12px;padding:17px 14px;min-width:0;font:inherit;line-height:1.25;box-shadow:none;transition:background .15s}
@@ -83,7 +83,7 @@
     #sokil-academy-schedule .ss-explainer {padding-left:0;border-left:0}
   }
   @media(max-width:600px) {
-    #sokil-academy-schedule {font-size:15px;margin:20px auto 25px}
+    #sokil-academy-schedule {font-size:15px;margin:20px auto 8px}
     #sokil-academy-schedule .ss-tabs {grid-template-columns:1fr;gap:9px;margin-bottom:20px}
     #sokil-academy-schedule .ss-tab {justify-content:flex-start;gap:13px;padding:13px 17px}
     #sokil-academy-schedule .ss-tab strong {font-size:17px}
@@ -295,6 +295,51 @@
     if (cached && valid(cached.data)) {usedFallback=true;ready(cached.data);}
     else showError('Перевірте доступність опублікованого розкладу.');
   });
+})();
+</script>
+
+
+<!-- SFC Sokil: automatic iframe height; no change to schedule data or rendering. -->
+<script>
+(function () {
+  'use strict';
+  if (window.parent === window) return;
+  var root = document.getElementById('sokil-academy-schedule');
+  if (!root) return;
+  var pending = false;
+  var previousHeight = 0;
+
+  function sendHeight() {
+    pending = false;
+    var rect = root.getBoundingClientRect();
+    var bottomMargin = parseFloat(window.getComputedStyle(root).marginBottom) || 0;
+    var height = Math.ceil(rect.bottom + window.pageYOffset + bottomMargin + 2);
+    if (!isFinite(height) || height < 200 || height > 20000) return;
+    if (Math.abs(height - previousHeight) < 2) return;
+    previousHeight = height;
+    window.parent.postMessage({type:'sokil-schedule:height', height:height}, '*');
+  }
+  function requestHeight() {
+    if (pending) return;
+    pending = true;
+    window.requestAnimationFrame(sendHeight);
+  }
+
+  if (window.ResizeObserver) {
+    new ResizeObserver(requestHeight).observe(root);
+  }
+  if (window.MutationObserver) {
+    new MutationObserver(requestHeight).observe(root, {
+      childList:true, subtree:true, characterData:true,
+      attributes:true, attributeFilter:['hidden','class','style']
+    });
+  }
+  window.addEventListener('load', requestHeight);
+  window.addEventListener('resize', requestHeight);
+  // Additional measurement after the async JSON and fonts have settled.
+  setTimeout(requestHeight, 100);
+  setTimeout(requestHeight, 600);
+  requestHeight();
 })();
 </script>
 
