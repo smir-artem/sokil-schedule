@@ -90,10 +90,12 @@
     #sokil-academy-schedule .ss-tab small {font-size:12px}
     #sokil-academy-schedule .ss-card {padding:17px 15px}
     #sokil-academy-schedule .ss-main h3, #sokil-academy-schedule .ss-about h3 {font-size:20px}
-    #sokil-academy-schedule .ss-line {grid-template-columns:minmax(60px,.85fr) minmax(100px,1.2fr) minmax(65px,.75fr);gap:8px;padding:12px 0;font-size:13px}
-    #sokil-academy-schedule .ss-day {padding:6px 7px;font-size:13px}
-    #sokil-academy-schedule .ss-time {font-size:13px}
-    #sokil-academy-schedule .ss-place {font-size:12px}
+    /* Mobile: date on its own row; time and location on the next row. */
+    #sokil-academy-schedule .ss-line {grid-template-columns:minmax(0,1fr) max-content;column-gap:10px;row-gap:9px;padding:13px 0;font-size:14px;align-items:start}
+    #sokil-academy-schedule .ss-day {grid-column:1/-1;grid-row:1;max-width:100%;min-width:0;white-space:normal;overflow-wrap:break-word;padding:7px 10px;font-size:14px}
+    #sokil-academy-schedule .ss-time {grid-column:1;grid-row:2;min-width:0;font-size:14px;overflow-wrap:anywhere}
+    #sokil-academy-schedule .ss-place {grid-column:2;grid-row:2;justify-self:end;min-width:0;max-width:105px;text-align:right;font-size:13px;overflow-wrap:break-word}
+    #sokil-academy-schedule .ss-line-note {grid-column:1/-1;grid-row:3;margin-top:0}
     #sokil-academy-schedule .ss-status-pill {margin:3px 0 0;font-size:11px}
     #sokil-academy-schedule .ss-bottom {align-items:flex-start}
   }
@@ -106,6 +108,7 @@
   ROOT.setAttribute('data-ss-started', '1');
   var URL = 'https://smir-artem.github.io/sokil-schedule/v1/schedule.json';
   var CACHE_KEY = 'sokil-academy-schedule-v1';
+  var PREF_GROUP_KEY = 'sokil-academy-preferred-group-v1';
   var CACHE_MS = 10 * 60 * 1000;
   var DAYS = ['', 'Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Нд'];
   var select = ROOT.querySelector('#ss-group-select');
@@ -249,6 +252,15 @@
     try {var raw = window.localStorage.getItem(CACHE_KEY);if (!raw) return null;var p=JSON.parse(raw);return p && valid(p.data) && Number.isFinite(p.cachedAt) ? p : null;} catch(e) {return null;}
   }
   function save(d) {try {window.localStorage.setItem(CACHE_KEY,JSON.stringify({data:d,cachedAt:Date.now()}));} catch(e) {}}
+  // Remember only a public group id on this device/browser. No personal data or cookies.
+  function preferredGroupId() {
+    try { return window.localStorage.getItem(PREF_GROUP_KEY) || ''; }
+    catch(e) { return ''; }
+  }
+  function rememberGroup(id) {
+    try { window.localStorage.setItem(PREF_GROUP_KEY,String(id)); }
+    catch(e) { /* Private browsing / blocked third-party storage: continue normally. */ }
+  }
   function ready(d) {
     data=d;
     var groups=d.groups.filter(function(g){return g && typeof g.id==='string' && typeof g.name==='string';});
@@ -256,10 +268,16 @@
     clear(select);
     groups.forEach(function(g){var opt=add(select,'option','',g.name);opt.value=g.id;});
     select.disabled=false;
-    group=groups[0];
+    var savedId = preferredGroupId();
+    group = groups.filter(function(g){return g.id === savedId;})[0] || groups[0];
+    select.value = group.id;
     loading.hidden=true;content.hidden=false;
     redraw();
-    select.addEventListener('change',function(){group=groups.filter(function(g){return g.id===select.value;})[0] || groups[0];redraw();});
+    select.addEventListener('change',function(){
+      group=groups.filter(function(g){return g.id===select.value;})[0] || groups[0];
+      rememberGroup(group.id);
+      redraw();
+    });
     ROOT.querySelectorAll('.ss-tab').forEach(function(t){t.addEventListener('click',function(){mode=t.getAttribute('data-mode');redraw();});});
   }
   function showError(detailText) {
