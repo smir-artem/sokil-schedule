@@ -1,9 +1,9 @@
 {
   "schema_version": "1.0",
   "timezone": "Europe/Kyiv",
-  "generated_at": "2026-11-13T04:32:00+02:00",
-  "stale_after": "2026-11-13T10:32:00+02:00",
-  "expires_at": "2026-11-14T16:32:00+02:00",
+  "generated_at": "2026-11-13T06:37:00+02:00",
+  "stale_after": "2026-11-13T12:37:00+02:00",
+  "expires_at": "2026-11-14T18:37:00+02:00",
   "sessions_from": "2026-11-13",
   "sessions_to": "2026-11-26",
   "groups": [
@@ -433,6 +433,28 @@
       "date": "2026-11-13",
       "start": "2026-11-13T20:30:00+02:00",
       "end": "2026-11-13T22:00:00+02:00",
+      "location": "manege",
+      "location_label": "Манеж",
+      "shared_with": [],
+      "status": "scheduled"
+    },
+    {
+      "id": "9d825e70",
+      "group_id": "2018",
+      "date": "2026-11-15",
+      "start": "2026-11-15T09:30:00+02:00",
+      "end": "2026-11-15T11:00:00+02:00",
+      "location": "manege",
+      "location_label": "Манеж",
+      "shared_with": [],
+      "status": "scheduled"
+    },
+    {
+      "id": "4a9c4b6b",
+      "group_id": "2019",
+      "date": "2026-11-15",
+      "start": "2026-11-15T11:00:00+02:00",
+      "end": "2026-11-15T12:30:00+02:00",
       "location": "manege",
       "location_label": "Манеж",
       "shared_with": [],
