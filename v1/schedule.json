@@ -1,9 +1,9 @@
 {
   "schema_version": "1.0",
   "timezone": "Europe/Kyiv",
-  "generated_at": "2026-11-13T17:03:00+02:00",
-  "stale_after": "2026-11-13T23:03:00+02:00",
-  "expires_at": "2026-11-15T05:03:00+02:00",
+  "generated_at": "2026-11-13T19:08:00+02:00",
+  "stale_after": "2026-11-14T01:08:00+02:00",
+  "expires_at": "2026-11-15T07:08:00+02:00",
   "sessions_from": "2026-11-13",
   "sessions_to": "2026-11-26",
   "groups": [
