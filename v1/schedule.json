@@ -1,9 +1,9 @@
 {
   "schema_version": "1.0",
   "timezone": "Europe/Kyiv",
-  "generated_at": "2026-11-14T21:00:00+02:00",
-  "stale_after": "2026-11-15T03:00:00+02:00",
-  "expires_at": "2026-11-16T09:00:00+02:00",
+  "generated_at": "2026-11-14T22:33:00+02:00",
+  "stale_after": "2026-11-15T04:33:00+02:00",
+  "expires_at": "2026-11-16T10:33:00+02:00",
   "sessions_from": "2026-11-14",
   "sessions_to": "2026-11-27",
   "groups": [
@@ -43,14 +43,6 @@
           "end": "22:00",
           "time_known": true,
           "location": "manege",
-          "shared_with": []
-        },
-        {
-          "weekday": 7,
-          "start": null,
-          "end": null,
-          "time_known": false,
-          "location": null,
           "shared_with": []
         }
       ],
@@ -92,14 +84,6 @@
           "end": "20:30",
           "time_known": true,
           "location": "manege",
-          "shared_with": []
-        },
-        {
-          "weekday": 7,
-          "start": null,
-          "end": null,
-          "time_known": false,
-          "location": null,
           "shared_with": []
         }
       ],
@@ -388,32 +372,6 @@
     }
   ],
   "sessions": [
-    {
-      "id": "aea5e62a",
-      "group_id": "2011-2012",
-      "date": "2026-11-15",
-      "start": "2026-11-15T09:00:00+02:00",
-      "end": "2026-11-15T10:30:00+02:00",
-      "location": "field",
-      "location_label": "Поле",
-      "shared_with": [
-        "2012-2013"
-      ],
-      "status": "scheduled"
-    },
-    {
-      "id": "fb3ccea7",
-      "group_id": "2012-2013",
-      "date": "2026-11-15",
-      "start": "2026-11-15T09:00:00+02:00",
-      "end": "2026-11-15T10:30:00+02:00",
-      "location": "field",
-      "location_label": "Поле",
-      "shared_with": [
-        "2011-2012"
-      ],
-      "status": "scheduled"
-    },
     {
       "id": "9d825e70",
       "group_id": "2018",
