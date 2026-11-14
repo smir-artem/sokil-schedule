@@ -1,11 +1,11 @@
 {
   "schema_version": "1.0",
   "timezone": "Europe/Kyiv",
-  "generated_at": "2026-11-14T23:41:00+02:00",
-  "stale_after": "2026-11-15T05:41:00+02:00",
-  "expires_at": "2026-11-16T11:41:00+02:00",
-  "sessions_from": "2026-11-14",
-  "sessions_to": "2026-11-27",
+  "generated_at": "2026-11-15T00:12:00+02:00",
+  "stale_after": "2026-11-15T06:12:00+02:00",
+  "expires_at": "2026-11-16T12:12:00+02:00",
+  "sessions_from": "2026-11-15",
+  "sessions_to": "2026-11-28",
   "groups": [
     {
       "id": "2011-2012",
@@ -284,11 +284,11 @@
           "shared_with": []
         },
         {
-          "weekday": 6,
-          "start": "09:30",
-          "end": "11:00",
-          "time_known": true,
-          "location": "manege",
+          "weekday": 7,
+          "start": null,
+          "end": null,
+          "time_known": false,
+          "location": null,
           "shared_with": [],
           "weekend_choice": true
         }
@@ -326,11 +326,11 @@
           "shared_with": []
         },
         {
-          "weekday": 6,
-          "start": "11:00",
-          "end": "12:30",
-          "time_known": true,
-          "location": "manege",
+          "weekday": 7,
+          "start": null,
+          "end": null,
+          "time_known": false,
+          "location": null,
           "shared_with": [],
           "weekend_choice": true
         }
