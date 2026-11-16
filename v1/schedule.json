@@ -1,9 +1,9 @@
 {
   "schema_version": "1.0",
   "timezone": "Europe/Kyiv",
-  "generated_at": "2026-11-16T10:47:00+02:00",
-  "stale_after": "2026-11-16T16:47:00+02:00",
-  "expires_at": "2026-11-17T22:47:00+02:00",
+  "generated_at": "2026-11-16T11:47:00+02:00",
+  "stale_after": "2026-11-16T17:47:00+02:00",
+  "expires_at": "2026-11-17T23:47:00+02:00",
   "sessions_from": "2026-11-16",
   "sessions_to": "2026-11-29",
   "groups": [
@@ -183,30 +183,30 @@
       },
       "guaranteed_per_week": 3,
       "sessions_coverage": "full",
-      "weekly_basis": "calendar",
+      "weekly_basis": "base_schedule",
       "weekly": [
         {
           "weekday": 1,
-          "start": "14:10",
-          "end": "15:10",
-          "time_known": true,
-          "location": "manege",
+          "start": null,
+          "end": null,
+          "time_known": false,
+          "location": null,
           "shared_with": []
         },
         {
           "weekday": 3,
-          "start": "14:10",
-          "end": "15:10",
-          "time_known": true,
-          "location": "manege",
+          "start": null,
+          "end": null,
+          "time_known": false,
+          "location": null,
           "shared_with": []
         },
         {
           "weekday": 5,
-          "start": "14:10",
-          "end": "15:10",
-          "time_known": true,
-          "location": "manege",
+          "start": null,
+          "end": null,
+          "time_known": false,
+          "location": null,
           "shared_with": []
         }
       ],
@@ -224,30 +224,30 @@
       },
       "guaranteed_per_week": 3,
       "sessions_coverage": "full",
-      "weekly_basis": "calendar",
+      "weekly_basis": "base_schedule",
       "weekly": [
         {
           "weekday": 1,
-          "start": "15:15",
-          "end": "16:15",
-          "time_known": true,
-          "location": "manege",
+          "start": null,
+          "end": null,
+          "time_known": false,
+          "location": null,
           "shared_with": []
         },
         {
           "weekday": 3,
-          "start": "15:15",
-          "end": "16:15",
-          "time_known": true,
-          "location": "manege",
+          "start": null,
+          "end": null,
+          "time_known": false,
+          "location": null,
           "shared_with": []
         },
         {
           "weekday": 5,
-          "start": "15:15",
-          "end": "16:15",
-          "time_known": true,
-          "location": "manege",
+          "start": null,
+          "end": null,
+          "time_known": false,
+          "location": null,
           "shared_with": []
         }
       ],
@@ -476,7 +476,7 @@
       "status": "scheduled"
     },
     {
-      "id": "41ae8783",
+      "id": "e8e48df8",
       "group_id": "2016-2017",
       "date": "2026-11-18",
       "start": "2026-11-18T15:00:00+02:00",
@@ -489,7 +489,7 @@
       "status": "scheduled"
     },
     {
-      "id": "30911b6c",
+      "id": "abe3d2ea",
       "group_id": "2016-2017-2",
       "date": "2026-11-18",
       "start": "2026-11-18T15:00:00+02:00",
@@ -579,7 +579,7 @@
       "status": "scheduled"
     },
     {
-      "id": "e717cf7f",
+      "id": "af9a3e11",
       "group_id": "2016-2017",
       "date": "2026-11-20",
       "start": "2026-11-20T15:00:00+02:00",
@@ -592,7 +592,7 @@
       "status": "scheduled"
     },
     {
-      "id": "8842b29d",
+      "id": "84a8a80c",
       "group_id": "2016-2017-2",
       "date": "2026-11-20",
       "start": "2026-11-20T15:00:00+02:00",
@@ -649,25 +649,29 @@
       "status": "scheduled"
     },
     {
-      "id": "0f02fe0c",
+      "id": "2278bf5f",
       "group_id": "2016-2017",
       "date": "2026-11-23",
-      "start": "2026-11-23T14:10:00+02:00",
-      "end": "2026-11-23T15:10:00+02:00",
+      "start": "2026-11-23T15:00:00+02:00",
+      "end": "2026-11-23T16:20:00+02:00",
       "location": "manege",
       "location_label": "Манеж",
-      "shared_with": [],
+      "shared_with": [
+        "2016-2017-2"
+      ],
       "status": "scheduled"
     },
     {
-      "id": "b8f0f973",
+      "id": "b8f302ee",
       "group_id": "2016-2017-2",
       "date": "2026-11-23",
-      "start": "2026-11-23T15:15:00+02:00",
-      "end": "2026-11-23T16:15:00+02:00",
+      "start": "2026-11-23T15:00:00+02:00",
+      "end": "2026-11-23T16:20:00+02:00",
       "location": "manege",
       "location_label": "Манеж",
-      "shared_with": [],
+      "shared_with": [
+        "2016-2017"
+      ],
       "status": "scheduled"
     },
     {
@@ -748,25 +752,29 @@
       "status": "scheduled"
     },
     {
-      "id": "720af66f",
+      "id": "79a4b673",
       "group_id": "2016-2017",
       "date": "2026-11-25",
-      "start": "2026-11-25T14:10:00+02:00",
-      "end": "2026-11-25T15:10:00+02:00",
+      "start": "2026-11-25T15:00:00+02:00",
+      "end": "2026-11-25T16:20:00+02:00",
       "location": "manege",
       "location_label": "Манеж",
-      "shared_with": [],
+      "shared_with": [
+        "2016-2017-2"
+      ],
       "status": "scheduled"
     },
     {
-      "id": "0702d2fd",
+      "id": "ef2d0f8f",
       "group_id": "2016-2017-2",
       "date": "2026-11-25",
-      "start": "2026-11-25T15:15:00+02:00",
-      "end": "2026-11-25T16:15:00+02:00",
+      "start": "2026-11-25T15:00:00+02:00",
+      "end": "2026-11-25T16:20:00+02:00",
       "location": "manege",
       "location_label": "Манеж",
-      "shared_with": [],
+      "shared_with": [
+        "2016-2017"
+      ],
       "status": "scheduled"
     },
     {
@@ -847,25 +855,29 @@
       "status": "scheduled"
     },
     {
-      "id": "240ec774",
+      "id": "7afe955f",
       "group_id": "2016-2017",
       "date": "2026-11-27",
-      "start": "2026-11-27T14:10:00+02:00",
-      "end": "2026-11-27T15:10:00+02:00",
+      "start": "2026-11-27T15:00:00+02:00",
+      "end": "2026-11-27T16:20:00+02:00",
       "location": "manege",
       "location_label": "Манеж",
-      "shared_with": [],
+      "shared_with": [
+        "2016-2017-2"
+      ],
       "status": "scheduled"
     },
     {
-      "id": "3a527318",
+      "id": "585aeab7",
       "group_id": "2016-2017-2",
       "date": "2026-11-27",
-      "start": "2026-11-27T15:15:00+02:00",
-      "end": "2026-11-27T16:15:00+02:00",
+      "start": "2026-11-27T15:00:00+02:00",
+      "end": "2026-11-27T16:20:00+02:00",
       "location": "manege",
       "location_label": "Манеж",
-      "shared_with": [],
+      "shared_with": [
+        "2016-2017"
+      ],
       "status": "scheduled"
     },
     {
