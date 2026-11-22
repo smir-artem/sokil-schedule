@@ -1,11 +1,11 @@
 {
   "schema_version": "1.0",
   "timezone": "Europe/Kyiv",
-  "generated_at": "2026-11-22T23:56:00+02:00",
-  "stale_after": "2026-11-23T05:56:00+02:00",
-  "expires_at": "2026-11-24T11:56:00+02:00",
-  "sessions_from": "2026-11-22",
-  "sessions_to": "2026-12-05",
+  "generated_at": "2026-11-23T00:28:00+02:00",
+  "stale_after": "2026-11-23T06:28:00+02:00",
+  "expires_at": "2026-11-24T12:28:00+02:00",
+  "sessions_from": "2026-11-23",
+  "sessions_to": "2026-12-06",
   "groups": [
     {
       "id": "2011-2012",
@@ -43,14 +43,6 @@
           "end": "22:00",
           "time_known": true,
           "location": "manege",
-          "shared_with": []
-        },
-        {
-          "weekday": 7,
-          "start": null,
-          "end": null,
-          "time_known": false,
-          "location": null,
           "shared_with": []
         }
       ],
@@ -92,14 +84,6 @@
           "end": "20:30",
           "time_known": true,
           "location": "manege",
-          "shared_with": []
-        },
-        {
-          "weekday": 7,
-          "start": null,
-          "end": null,
-          "time_known": false,
-          "location": null,
           "shared_with": []
         }
       ],
@@ -315,15 +299,6 @@
           "location": null,
           "shared_with": [],
           "weekend_choice": true
-        },
-        {
-          "weekday": 7,
-          "start": null,
-          "end": null,
-          "time_known": false,
-          "location": null,
-          "shared_with": [],
-          "weekend_choice": true
         }
       ],
       "vacation": null
@@ -360,15 +335,6 @@
         },
         {
           "weekday": 6,
-          "start": null,
-          "end": null,
-          "time_known": false,
-          "location": null,
-          "shared_with": [],
-          "weekend_choice": true
-        },
-        {
-          "weekday": 7,
           "start": null,
           "end": null,
           "time_known": false,
@@ -414,32 +380,6 @@
     }
   ],
   "sessions": [
-    {
-      "id": "0a23ec5f",
-      "group_id": "2011-2012",
-      "date": "2026-11-22",
-      "start": "2026-11-22T10:30:00+02:00",
-      "end": "2026-11-22T12:00:00+02:00",
-      "location": "manege",
-      "location_label": "Манеж",
-      "shared_with": [
-        "2012-2013"
-      ],
-      "status": "scheduled"
-    },
-    {
-      "id": "aa0278d4",
-      "group_id": "2012-2013",
-      "date": "2026-11-22",
-      "start": "2026-11-22T10:30:00+02:00",
-      "end": "2026-11-22T12:00:00+02:00",
-      "location": "manege",
-      "location_label": "Манеж",
-      "shared_with": [
-        "2011-2012"
-      ],
-      "status": "scheduled"
-    },
     {
       "id": "2278bf5f",
       "group_id": "2016-2017",
