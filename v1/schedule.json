@@ -1,11 +1,11 @@
 {
   "schema_version": "1.0",
   "timezone": "Europe/Kyiv",
-  "generated_at": "2026-11-26T23:17:00+02:00",
-  "stale_after": "2026-11-27T05:17:00+02:00",
-  "expires_at": "2026-11-28T11:17:00+02:00",
-  "sessions_from": "2026-11-26",
-  "sessions_to": "2026-12-09",
+  "generated_at": "2026-11-27T00:19:00+02:00",
+  "stale_after": "2026-11-27T06:19:00+02:00",
+  "expires_at": "2026-11-28T12:19:00+02:00",
+  "sessions_from": "2026-11-27",
+  "sessions_to": "2026-12-10",
   "groups": [
     {
       "id": "2011-2012",
@@ -380,39 +380,6 @@
     }
   ],
   "sessions": [
-    {
-      "id": "14c84214",
-      "group_id": "2018",
-      "date": "2026-11-26",
-      "start": "2026-11-26T15:00:00+02:00",
-      "end": "2026-11-26T16:30:00+02:00",
-      "location": "manege",
-      "location_label": "Манеж",
-      "shared_with": [],
-      "status": "scheduled"
-    },
-    {
-      "id": "9cd07324",
-      "group_id": "2019",
-      "date": "2026-11-26",
-      "start": "2026-11-26T16:30:00+02:00",
-      "end": "2026-11-26T18:00:00+02:00",
-      "location": "manege",
-      "location_label": "Манеж",
-      "shared_with": [],
-      "status": "scheduled"
-    },
-    {
-      "id": "04c25be8",
-      "group_id": "2020-plus",
-      "date": "2026-11-26",
-      "start": "2026-11-26T18:00:00+02:00",
-      "end": "2026-11-26T19:00:00+02:00",
-      "location": "manege",
-      "location_label": "Манеж",
-      "shared_with": [],
-      "status": "scheduled"
-    },
     {
       "id": "7afe955f",
       "group_id": "2016-2017",
@@ -949,6 +916,39 @@
       "date": "2026-12-09",
       "start": "2026-12-09T20:30:00+02:00",
       "end": "2026-12-09T22:00:00+02:00",
+      "location": "manege",
+      "location_label": "Манеж",
+      "shared_with": [],
+      "status": "scheduled"
+    },
+    {
+      "id": "6e651528",
+      "group_id": "2018",
+      "date": "2026-12-10",
+      "start": "2026-12-10T15:00:00+02:00",
+      "end": "2026-12-10T16:30:00+02:00",
+      "location": "manege",
+      "location_label": "Манеж",
+      "shared_with": [],
+      "status": "scheduled"
+    },
+    {
+      "id": "f07f8fe3",
+      "group_id": "2019",
+      "date": "2026-12-10",
+      "start": "2026-12-10T16:30:00+02:00",
+      "end": "2026-12-10T18:00:00+02:00",
+      "location": "manege",
+      "location_label": "Манеж",
+      "shared_with": [],
+      "status": "scheduled"
+    },
+    {
+      "id": "83c56eb2",
+      "group_id": "2020-plus",
+      "date": "2026-12-10",
+      "start": "2026-12-10T18:00:00+02:00",
+      "end": "2026-12-10T19:00:00+02:00",
       "location": "manege",
       "location_label": "Манеж",
       "shared_with": [],
